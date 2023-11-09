@@ -2,6 +2,5 @@
 ## setup
 ```bash
 pyenv local 3.12
-poetry init
 poetry install
 ```
