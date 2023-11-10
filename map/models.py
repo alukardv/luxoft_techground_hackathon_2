@@ -8,6 +8,13 @@ class TypeStreet(models.Model):
         return self.title
 
 
+class City(models.Model):
+    title = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.title
+
+
 class Institution(models.Model):
     YES_NO_CHOICES = (
         (False, 'Ні'),
@@ -34,7 +41,7 @@ class Institution(models.Model):
     presence_of_tactile_route = models.BooleanField(choices=YES_NO_CHOICES, default=False)
     website_institution = models.CharField(max_length=255, blank=True, default='')
     institution_availability_page = models.CharField(max_length=255, blank=True, default='')
-    city = models.CharField(max_length=255, blank=True, default='')
+    city = models.ForeignKey(City, on_delete=models.SET_NULL, null=True, blank=True)
     type_street = models.ForeignKey(TypeStreet, on_delete=models.SET_NULL, null=True, blank=True)
     street_name = models.CharField(max_length=255, blank=True, default='')
     house_number = models.CharField(max_length=255, blank=True, default='')
