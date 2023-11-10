@@ -1,6 +1,13 @@
 from django.db import models
 
 
+class InstitutionType(models.Model):
+    title = models.CharField(max_length=255)
+
+    def __str__(self):
+        return self.title
+
+
 class TypeStreet(models.Model):
     STREET = 1
     AVENUE = 2
@@ -26,6 +33,7 @@ class Institution(models.Model):
         (True, 'Так')
     )
 
+    institution_type = models.ForeignKey(InstitutionType, on_delete=models.SET_NULL, null=True, blank=True)
     name_object = models.CharField(max_length=255)
     special_parking_spaces = models.BooleanField(choices=YES_NO_CHOICES, default=False)
     input_group = models.BooleanField(choices=YES_NO_CHOICES, default=False)
