@@ -1,0 +1,30 @@
+[
+    {
+        "model":"map.typestreet",
+        "pk":1,
+        "fields":{
+            "title":"вулиця"
+        }
+    },
+    {
+        "model":"map.typestreet",
+        "pk":2,
+        "fields":{
+            "title":"проспект"
+        }
+    },
+    {
+        "model":"map.typestreet",
+        "pk":3,
+        "fields":{
+            "title":"бульвар"
+        }
+    },
+    {
+        "model":"map.typestreet",
+        "pk":4,
+        "fields":{
+            "title":"шосе"
+        }
+    }
+]
