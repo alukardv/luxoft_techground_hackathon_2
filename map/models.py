@@ -2,6 +2,11 @@ from django.db import models
 
 
 class TypeStreet(models.Model):
+    STREET = 1
+    AVENUE = 2
+    BOULEVARD = 3
+    HIGHWAY = 4
+
     title = models.CharField(max_length=255)
 
     def __str__(self):
