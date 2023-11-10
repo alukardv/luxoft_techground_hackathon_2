@@ -46,9 +46,26 @@ source venv/bin/activate
 pip3 install -r requirements.txt
 ```
 
+## DB migrate
+### with virtual environments 
+```bash
+python3 manage.py makemigrations 
+python3 manage.py migrate 
+```
+### with poetry
+```bash
+poetry run python manage.py makemigrations 
+poetry run python manage.py migrate
+```
 
-### Load initial data
+## Load initial data
+### with virtual environments 
 ```bash
 ./manage.py loaddata initial_data/map.json
 ./manage.py load_initial_cities initial_data/cities.txt
+```
+### with poetry
+```bash
+poetry run python manage.py loaddata initial_data/map.json 
+poetry run python manage.py load_initial_cities initial_data/cities.txt
 ```
