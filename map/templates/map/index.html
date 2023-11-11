@@ -1,16 +1,19 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+    <div class="text-block">
+        <h1>About Us</h1>
+        We are building a first of a kind network of doctors who offer Direct Primary Care and Anti-Aging (Cosmetic
+        Dermatology) medical memberships for patients who want optimum healthcare driven by the latest in technology
+        and -- we offer a concierge service (management and patient referral service) for doctors that specializes
+        in converting "insurance" practices to the "membership" model.
+    </div>
     <div id="map-layer"></div>
-
     <script>
         let start = null;
         let end = null;
-
         let map;
         let waypoints;
-
         function initMap() {
             let mapLayer = document.getElementById("map-layer");
             let centerCoordinates = new google.maps.LatLng(50.44993391406045, 30.523163862719514);
@@ -28,7 +31,9 @@
                 } else if (end == null) {
                     end = point;
                     drawPath(directionsService, directionsDisplay, start, end);
+                    getObjectsOnMap();
                     $('#clear_route').show();
+                    $('.text-block').show();
                 }
             });
 
@@ -37,6 +42,7 @@
                 start = null;
                 end = null;
                 $(this).hide();
+                $('.text-block').hide();
             });
         }
         function drawPath(directionsService, directionsDisplay, start, end) {
@@ -53,6 +59,19 @@
                 }
                 else {
                     window.alert('Problem in showing direction due to ' + status);
+                }
+            });
+        }
+        function getObjectsOnMap() {
+            $.ajax({
+                url: "{% url 'get_objects_on_map' %}",
+                type: 'GET',
+                dataType: 'json',
+                success: function(result) {
+                    $('.text-block').html(result.data);
+                },
+                error: function(error) {
+                    console.log('Помилка отримання даних:', error);
                 }
             });
         }

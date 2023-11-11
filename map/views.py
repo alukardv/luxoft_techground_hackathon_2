@@ -1,6 +1,11 @@
+import json
+
+from random import choices
 from django.conf import settings
-from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound
+from django.shortcuts import render
+
+from map.models import ObjectOnMap
 
 
 def index(request):
@@ -16,6 +21,18 @@ def about(request):
         'title': 'About',
     }
     return render(request, 'map/about.html', data)
+
+
+def get_objects_on_map(request):
+    data = ""
+    for _obj in choices(ObjectOnMap.objects.all().values(), k=5):  # hotfix TODO replace by real data
+        data += f'<h5>{_obj['name_object']}</h4>' \
+                  f"<h6>{dict(ObjectOnMap.TYPE_OBJECT_CHOICES)[_obj['type_object']]}</h6><br>"
+    return HttpResponse(
+        json.dumps({
+            'data': data,
+        })
+    )
 
 
 def page_not_found(request, exception):

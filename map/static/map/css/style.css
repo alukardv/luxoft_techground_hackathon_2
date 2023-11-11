@@ -27,3 +27,16 @@ header {
     font-family: 'Inter', sans-serif;
     text-align: center;
 }
+
+.text-block {
+    z-index: 2;
+    position: absolute;
+    top: 160px;
+    left: 40px;
+    max-width: 30%;
+    min-height: 30%;
+    background-color: white;
+    padding: 15px;
+    border: 1px solid #ccc;
+    display: none;
+}
