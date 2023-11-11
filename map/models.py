@@ -64,3 +64,36 @@ class Institution(models.Model):
 
     def __str__(self):
         return self.name_object
+
+
+class ObjectOnMap(models.Model):
+    RAMP = 'ramp'
+    LOWERED_BORDER = 'lowered_border'
+    TACTILE_MARKING = 'tactile_marking'
+    TRAFFIC_LIGHT_WITH_SOUND_SIGNAL = 'traffic_light_with_sound_signal'
+    TOILET_FOR_PEOPLE_WITH_DISABILITIES = 'toilet_for_people_with_disabilities'
+    ENTRANCE_LEVEL_WITH_SIDEWALK = 'entrance_level_with_sidewalk'
+    ELEVATOR = 'elevator'
+    HOIST = 'hoist'
+    SPACE_FOR_CHANGING_BABIES = 'space_for_changing_babies'
+    PARKING_FOR_PEOPLE_WITH_DISABILITIES = 'parking_for_people_with_disabilities'
+    TYPE_OBJECT_CHOICES = (
+        (RAMP, 'пандус'),
+        (LOWERED_BORDER, 'понижений бордюр'),
+        (TACTILE_MARKING, 'тактильне маркування'),
+        (TRAFFIC_LIGHT_WITH_SOUND_SIGNAL, 'світлофор зі звуковим сигналом'),
+        (TOILET_FOR_PEOPLE_WITH_DISABILITIES, 'вбиральня для людей з інвалідністю'),
+        (ENTRANCE_LEVEL_WITH_SIDEWALK, 'вхід в рівень з тротуаром'),
+        (ELEVATOR, 'ліфт'),
+        (HOIST, 'підйомник'),
+        (SPACE_FOR_CHANGING_BABIES, 'простір для сповинання дітей'),
+        (PARKING_FOR_PEOPLE_WITH_DISABILITIES, 'парковка для людей з інвалідністю'),
+    )
+
+    name_object = models.CharField(max_length=255)
+    type_object = models.CharField(max_length=255, choices=TYPE_OBJECT_CHOICES, default=RAMP)
+    x_coord = models.FloatField()
+    y_coord = models.FloatField()
+
+    def __str__(self):
+        return self.name_object

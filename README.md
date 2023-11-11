@@ -62,10 +62,12 @@ poetry run python manage.py migrate
 ./manage.py loaddata initial_data/map.json
 ./manage.py load_initial_cities initial_data/cities.txt
 ./manage.py load_googlesheet_data initial_data/data_institutions.csv
+./manage.py manage.py load_objects_on_map initial_data/object_on_map.csv
 ```
 ### with poetry
 ```bash
 poetry run python manage.py loaddata initial_data/map.json 
 poetry run python manage.py load_initial_cities initial_data/cities.txt
 poetry run python manage.py load_googlesheet_data initial_data/data_institutions.csv
+poetry run python manage.py load_objects_on_map initial_data/object_on_map.csv 
 ```
