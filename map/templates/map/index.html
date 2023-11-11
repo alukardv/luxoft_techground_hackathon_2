@@ -1,13 +1,64 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div id="map">
-        <script>
-          var map = L.map('map').setView([50.4546600, 30.5238000], 13);
 
-          L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-              attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          }).addTo(map);
-        </script>
-    </div>
+    <div id="map-layer"></div>
+
+    <script>
+        let start = null;
+        let end = null;
+
+        let map;
+        let waypoints;
+
+        function initMap() {
+            let mapLayer = document.getElementById("map-layer");
+            let centerCoordinates = new google.maps.LatLng(50.44993391406045, 30.523163862719514);
+            let defaultOptions = { center: centerCoordinates, zoom: 13 }
+            map = new google.maps.Map(mapLayer, defaultOptions);
+
+            let directionsService = new google.maps.DirectionsService;
+            let directionsDisplay = new google.maps.DirectionsRenderer;
+            directionsDisplay.setMap(map);
+
+            google.maps.event.addListener(map, 'click', function(e) {
+                let point = e.latLng;
+                if (start == null) {
+                    start = point;
+                } else if (end == null) {
+                    end = point;
+                    drawPath(directionsService, directionsDisplay, start, end);
+                    $('#clear_route').show();
+                }
+            });
+
+            $('#clear_route').on('click', function() {
+                directionsDisplay.set('directions', null);
+                start = null;
+                end = null;
+                $(this).hide();
+            });
+        }
+        function drawPath(directionsService, directionsDisplay, start, end) {
+            directionsService.route(
+            {
+                origin: start,
+                destination: end,
+                optimizeWaypoints: true,
+                travelMode: "WALKING"
+            },
+            function(response, status) {
+                if (status === 'OK') {
+                    directionsDisplay.setDirections(response);
+                }
+                else {
+                    window.alert('Problem in showing direction due to ' + status);
+                }
+            });
+        }
+	</script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_MAP_API_KEY }}&callback=initMap">
+    </script>
+{#    https://www.tutorialswebsite.com/how-to-draw-route-path-on-map-using-google-maps-direction-api-in-php/#}
 {% endblock %}

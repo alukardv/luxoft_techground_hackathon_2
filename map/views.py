@@ -1,13 +1,12 @@
+from django.conf import settings
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseNotFound
 
-from map.models import Institution
-
 
 def index(request):
-    posts = Institution.objects.all()
     data = {
         'title': 'Home',
+        'GOOGLE_MAP_API_KEY': settings.GOOGLE_MAP_API_KEY,
     }
     return render(request, 'map/index.html', context=data)
 
