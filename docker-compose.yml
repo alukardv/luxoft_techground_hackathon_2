@@ -14,7 +14,7 @@ services:
         PY_AUTORELOAD: 1
     command: /bin/bash -c 'pip install -r requirements.txt && ./manage.py runserver 0.0.0.0:8000'
     ports:
-      - "8000:8000"
+      - "80:8000"
 
   nginx:
     image: nginx:latest
