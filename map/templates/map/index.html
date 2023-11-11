@@ -1,14 +1,13 @@
 {% extends 'base.html' %}
-{% block content %}
-<main>
-    <div id="map">
-        <script>
-          var map = L.map('map').setView([50.4546600, 30.5238000], 13);
 
-          L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-              attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          }).addTo(map);
-        </script>
-    </div>
-</main>
+{% block content %}
+<div id="map">
+    <script>
+      var map = L.map('map').setView([50.4546600, 30.5238000], 13);
+
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+    </script>
+</div>
 {% endblock %}
