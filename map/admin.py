@@ -1,19 +1,14 @@
 from django.contrib import admin
 
-# from .models import TypeStreet
-#
-#
-# class TypeStreetAdmin(admin.ModelAdmin):
-#     model = TypeStreet
-#     list_display = ('id', 'title')
-#     list_display_links = ('title',)
-#     search_fields = ('id', 'title')
-#     list_filter = ('title',)
-#
-#
-# admin.site.register(TypeStreet, TypeStreetAdmin)
+from .models import TypeStreet, ObjectOnMap
 
-from .models import ObjectOnMap
+
+class TypeStreetAdmin(admin.ModelAdmin):
+    model = TypeStreet
+    list_display = ('id', 'title')
+    list_display_links = ('title',)
+    search_fields = ('id', 'title')
+    list_filter = ('title',)
 
 
 class ObjectOnMapAdmin(admin.ModelAdmin):
@@ -24,4 +19,5 @@ class ObjectOnMapAdmin(admin.ModelAdmin):
     list_filter = ('type_object',)
 
 
+admin.site.register(TypeStreet, TypeStreetAdmin)
 admin.site.register(ObjectOnMap, ObjectOnMapAdmin)
