@@ -22,3 +22,7 @@ header {
 .nav-btn-mrg-r {
     margin-right: 10px;
 }
+#about {
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+}
