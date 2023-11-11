@@ -3,26 +3,24 @@ from django.http import HttpResponse, HttpResponseNotFound
 
 from map.models import Institution
 
-menu = [{'title': "main", 'url_name': 'main'},
-        {'title': "about", 'url_name': 'about'},
-        ]
-
 
 def index(request):
     posts = Institution.objects.all()
-    data = {'title': 'Main page',
-            'menu': menu,
-            'map': posts,
-            }
+    data = {
+        'title': 'Home',
+    }
     return render(request, 'map/index.html', context=data)
 
 
 def about(request):
-    data = {'title': 'about',
-            'menu': menu,
-            }
+    data = {
+        'title': 'About',
+    }
     return render(request, 'map/about.html', data)
 
 
 def page_not_found(request, exception):
-    return HttpResponseNotFound(f"page not found")
+    msg = """<title>404</title>
+             <style>* { font-family: consolas, monospace; }</style>
+             <h1><b>404 PAGE NOT FOUND</b><h1>"""
+    return HttpResponseNotFound(msg)

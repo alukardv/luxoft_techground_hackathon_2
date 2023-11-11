@@ -1,4 +1,6 @@
 {% load static %}
+{% url 'main' as main_url %}
+{% url 'about' as about_url %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,12 +27,24 @@
                 <span class="fs-4 text-white">BeyondBarriers.pp.ua</span>
             </a>
             <div class="col-md-5">
-                <button type="button" class="btn btn-primary">Primary</button>
-                <button type="button" class="btn btn-secondary">Secondary</button>
+                <button type="button" class="btn btn-default" style="padding: 0;">
+                    <img width="40px" height="40px" src="{% static 'map/img/eye.ico' %}" alt="eye">
+                </button>
+                <button type="button" class="btn btn-default" style="padding: 0;">
+                    <img width="40px" height="40px" src="{% static 'map/img/volume.ico' %}" alt="eye">
+                </button>
             </div>
             <ul class="nav nav-pills lg-4 md-3">
-                <li class="nav-item"><a href="{% url 'main' %}" class="nav-link active" aria-current="page">Main</a></li>
-                <li class="nav-item"><a href="{% url 'about' %}" class="nav-link">About</a></li>
+                <li class="nav-item nav-btn-mrg-r">
+                    <a href="{{ main_url }}">
+                        <button type="button" class="btn btn-outline-light {% if request.path == main_url %}active{% endif %}">Main</button>
+                    </a>
+                </li>
+                <li class="nav-item nav-btn-mrg-r">
+                    <a href="{{ about_url }}">
+                        <button type="button" class="btn btn-outline-light {% if request.path == about_url %}active{% endif %}">About</button>
+                    </a>
+                </li>
             </ul>
         </header>
         {% block content %}
