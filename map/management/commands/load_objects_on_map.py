@@ -22,3 +22,4 @@ class Command(BaseCommand):
                     x_coord=float(row['x_coord'].strip()),
                     y_coord=float(row['y_coord'].strip())
                 )
+
